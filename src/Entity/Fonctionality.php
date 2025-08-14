@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\FonctionalityRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: FonctionalityRepository::class)]
@@ -21,6 +23,17 @@ class Fonctionality
 
     #[ORM\Column(length: 255)]
     private ?string $iconUrl = null;
+
+    /**
+     * @var Collection<int, Listing>
+     */
+    #[ORM\ManyToMany(targetEntity: Listing::class, mappedBy: 'fonctionality')]
+    private Collection $listings;
+
+    public function __construct()
+    {
+        $this->listings = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -59,6 +72,33 @@ class Fonctionality
     public function setIconUrl(string $iconUrl): static
     {
         $this->iconUrl = $iconUrl;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Listing>
+     */
+    public function getListings(): Collection
+    {
+        return $this->listings;
+    }
+
+    public function addListing(Listing $listing): static
+    {
+        if (!$this->listings->contains($listing)) {
+            $this->listings->add($listing);
+            $listing->addFonctionality($this);
+        }
+
+        return $this;
+    }
+
+    public function removeListing(Listing $listing): static
+    {
+        if ($this->listings->removeElement($listing)) {
+            $listing->removeFonctionality($this);
+        }
 
         return $this;
     }

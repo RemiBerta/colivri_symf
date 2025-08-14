@@ -25,6 +25,9 @@ class Adress
     #[ORM\Column(length: 100)]
     private ?string $country = null;
 
+    #[ORM\OneToOne(mappedBy: 'adress', cascade: ['persist', 'remove'])]
+    private ?Listing $listing = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +77,23 @@ class Adress
     public function setCountry(string $country): static
     {
         $this->country = $country;
+
+        return $this;
+    }
+
+    public function getListing(): ?Listing
+    {
+        return $this->listing;
+    }
+
+    public function setListing(Listing $listing): static
+    {
+        // set the owning side of the relation if necessary
+        if ($listing->getAdress() !== $this) {
+            $listing->setAdress($this);
+        }
+
+        $this->listing = $listing;
 
         return $this;
     }

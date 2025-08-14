@@ -22,6 +22,14 @@ class Message
     #[ORM\Column]
     private ?bool $isRead = null;
 
+    #[ORM\ManyToOne(inversedBy: 'messages')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'messages')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Chatroom $chatroom = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +67,30 @@ class Message
     public function setIsRead(bool $isRead): static
     {
         $this->isRead = $isRead;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getChatroom(): ?Chatroom
+    {
+        return $this->chatroom;
+    }
+
+    public function setChatroom(?Chatroom $chatroom): static
+    {
+        $this->chatroom = $chatroom;
 
         return $this;
     }
