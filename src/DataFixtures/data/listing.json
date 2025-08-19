@@ -1,0 +1,67 @@
+[
+
+
+  {
+    "maximumCapacity": "5",
+    "pricePerMonth" : "900",
+    "description": "Grande colocation moderne avec 5 chambres privatives et un grand salon commun. Idéal pour jeunes actifs à la recherche de convivialité.",
+    "title": "Chambre privée dans coliving moderne"
+  },
+  {
+    "maximumCapacity": "3",
+    "pricePerMonth" : "600",    
+    "description": "Maison rénovée avec 6 chambres équipées, cuisine commune et terrasse extérieure. Ambiance conviviale et quartier résidentiel calme.",
+    "title": "Coliving spacieux en maison partagée"
+  },
+  {
+    "maximumCapacity": "7",
+    "pricePerMonth" : "700",
+    "description": "Appartement de 4 chambres en plein centre-ville, chaque chambre dispose de son bureau. Cuisine et salon partagés, Wi-Fi inclus.",
+    "title": "Colocation urbaine pour jeunes actifs"
+  },
+  {
+    "maximumCapacity": "6",
+    "pricePerMonth" : "780",
+    "description": "Grande colocation internationale avec 7 chambres. Salle de sport dans la résidence, espaces communs chaleureux et événements réguliers.",
+    "title": "Coliving international et dynamique"
+  },
+  {
+    "maximumCapacity": "4",
+    "pricePerMonth" : "350",
+    "description": "Appartement meublé avec 3 chambres individuelles, proche des transports. Parfait pour ceux qui cherchent confort et indépendance en colocation.",
+    "title": "Coliving pratique proche du métro"
+  },
+  {
+    "maximumCapacity": "12",
+    "pricePerMonth" : "500",
+    "description": "Chambre privée dans une grande maison avec jardin, cuisine équipée et espace coworking partagé. Idéal pour freelances ou télétravail.",
+    "title": "Coliving avec jardin et espace de travail"
+  },
+  {
+    "maximumCapacity": "5",
+    "pricePerMonth" : "900",
+    "description": "Colocation haut de gamme avec 5 chambres, décoration moderne et espaces communs spacieux. Située dans un quartier vivant et jeune.",
+    "title": "Coliving design et convivial"
+  },
+  {
+    "maximumCapacity": "2",
+    "pricePerMonth" : "580",
+    "description": "Chambres privatives dans un vaste appartement rénové, avec salon télé et salle à manger commune. Ambiance studieuse et amicale.",
+    "title": "Appartement coliving pour longue durée"
+  },
+  {
+    "maximumCapacity": "10",
+    "pricePerMonth" : "920",
+    "description": "Maison partagée avec 8 colocataires, jardin et terrasse barbecue. Ambiance internationale, idéale pour des séjours de longue durée.",
+    "title": "Grande maison coliving avec jardin"
+  },
+  {
+    "maximumCapacity": "5",
+    "pricePerMonth" : "670",
+    "description": "Chambre individuelle dans un appartement de 4 colocataires. Cuisine moderne, buanderie partagée et proximité des universités.",
+    "title": "Coliving étudiant et jeunes pros"
+  }
+]
+
+
+

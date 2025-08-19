@@ -1,0 +1,62 @@
+[
+  {
+    "street": "45 rue de la République",
+    "city": "Marseille",
+    "postalCode": "13002",
+    "country": "France"
+  },
+  {
+    "street": "12 avenue des Champs-Élysées",
+    "city": "Paris",
+    "postalCode": "75008",
+    "country": "France"
+  },
+  {
+    "street": "8 place Bellecour",
+    "city": "Lyon",
+    "postalCode": "69002",
+    "country": "France"
+  },
+  {
+    "street": "27 boulevard de la Victoire",
+    "city": "Strasbourg",
+    "postalCode": "67000",
+    "country": "France"
+  },
+  {
+    "street": "5 rue Sainte-Catherine",
+    "city": "Bordeaux",
+    "postalCode": "33000",
+    "country": "France"
+  },
+  {
+    "street": "99 allée de la Mer",
+    "city": "Nice",
+    "postalCode": "06000",
+    "country": "France"
+  },
+  {
+    "street": "14 cours Gambetta",
+    "city": "Montpellier",
+    "postalCode": "34000",
+    "country": "France"
+  },
+  {
+    "street": "7 place du Capitole",
+    "city": "Toulouse",
+    "postalCode": "31000",
+    "country": "France"
+  },
+ {
+    "street": "18 rue de la Monnaie",
+    "city": "Lille",
+    "postalCode": "59800",
+    "country": "France"
+ },
+ {
+    "street": "64 quai de la Fosse",
+    "city": "Nantes",
+    "postalCode": "44000",
+    "country": "France"
+ }
+]

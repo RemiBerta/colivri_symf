@@ -2,6 +2,9 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Adress;
+use App\Entity\Listing;
+use App\Entity\Picture;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -27,7 +30,61 @@ class AppFixtures extends Fixture
                 ->setPassword($oneUser["password"])
                 ->setGender($oneUser["gender"])
                 ->setInscriptionDate(\DateTime::createFromFormat('d/m/Y',$oneUser["inscriptionDate"]));
+
                 $manager->persist($user);
+
+                $users[] = $user;
+        }
+
+    $adressesData = json_decode(file_get_contents(__DIR__ . '/data/adress.json'), true);
+
+        foreach ($adressesData as $oneAdress) {
+            $adress = new Adress();
+            $adress
+                ->setStreet($oneAdress["street"])
+                ->setCity($oneAdress["city"])
+                ->setPostalCode($oneAdress["postalCode"])
+                ->setCountry($oneAdress["country"]);
+
+                $manager->persist($adress);
+
+                $adresses[] = $adress;
+        }
+
+        $picturesData = json_decode(file_get_contents(__DIR__ . '/data/picture.json'), true);
+
+        foreach ($picturesData as $onePicture) {
+            $picture = new Picture();
+            $picture
+                ->setUrl($onePicture["url"])
+                ->setDescription($onePicture["description"])
+                ->setSortOrder($onePicture["sortOrder"])
+                ->setTitle($onePicture["title"]);
+
+                $randomUser = $users[array_rand($users)];
+                $picture->setUser($randomUser);
+
+                $manager->persist($picture);
+        }
+    
+        $listingsData = json_decode(file_get_contents(__DIR__ . '/data/listing.json'), true);
+
+        foreach ($listingsData as $index => $oneListing) {
+            $listing = new Listing();
+            $listing
+                ->setMaximumCapacity($oneListing["maximumCapacity"])
+                ->setPricePerMonth($oneListing["pricePerMonth"])
+                ->setDescription($oneListing["description"])
+                ->setTitle($oneListing["title"]);
+
+                $randomUser = $users[array_rand($users)];
+                $listing->setUser($randomUser);
+
+                if (isset($adresses[$index])) {
+                 $listing->setAdress($adresses[$index]);
+                }
+
+                $manager->persist($listing);
         }
 
         $manager->flush();
