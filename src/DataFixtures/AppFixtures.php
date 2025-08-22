@@ -51,22 +51,6 @@ class AppFixtures extends Fixture
                 $adresses[] = $adress;
         }
 
-        $picturesData = json_decode(file_get_contents(__DIR__ . '/data/picture.json'), true);
-
-        foreach ($picturesData as $onePicture) {
-            $picture = new Picture();
-            $picture
-                ->setUrl($onePicture["url"])
-                ->setDescription($onePicture["description"])
-                ->setSortOrder($onePicture["sortOrder"])
-                ->setTitle($onePicture["title"]);
-
-                $randomUser = $users[array_rand($users)];
-                $picture->setUser($randomUser);
-
-                $manager->persist($picture);
-        }
-    
         $listingsData = json_decode(file_get_contents(__DIR__ . '/data/listing.json'), true);
 
         foreach ($listingsData as $index => $oneListing) {
@@ -85,7 +69,32 @@ class AppFixtures extends Fixture
                 }
 
                 $manager->persist($listing);
+
+                $listings[] = $listing;
         }
+        
+        $picturesData = json_decode(file_get_contents(__DIR__ . '/data/picture.json'), true);
+
+        foreach ($picturesData as $onePicture) {
+            $picture = new Picture();
+            $picture
+                ->setUrl($onePicture["url"])
+                ->setDescription($onePicture["description"])
+                ->setSortOrder($onePicture["sortOrder"])
+                ->setTitle($onePicture["title"]);
+
+                $randomUser = $users[array_rand($users)];
+                $picture->setUser($randomUser);
+
+                $randomListing = $listings[array_rand($listings)];
+                $picture->setListing($randomListing);
+
+                $manager->persist($picture);
+
+            
+        }
+    
+
 
         $manager->flush();
     }

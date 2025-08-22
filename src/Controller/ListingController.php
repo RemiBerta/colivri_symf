@@ -22,7 +22,7 @@ final class ListingController extends AbstractController
     {
         $listings = $listingRepository->findAll();
 
-        return $this->render('listing/list.html.twig', [
+        return $this->render('listing/listing.html.twig', [
             'listings' => $listings
         ]);
     }

@@ -61,12 +61,19 @@ class Listing
     #[ORM\ManyToMany(targetEntity: Fonctionality::class, inversedBy: 'listings')]
     private Collection $fonctionality;
 
+    /**
+     * @var Collection<int, Picture>
+     */
+    #[ORM\OneToMany(targetEntity: Picture::class, mappedBy: 'listing')]
+    private Collection $pictures;
+
     public function __construct()
     {
         $this->chatrooms = new ArrayCollection();
         $this->bookings = new ArrayCollection();
         $this->reviews = new ArrayCollection();
         $this->fonctionality = new ArrayCollection();
+        $this->pictures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -256,6 +263,36 @@ class Listing
     public function removeFonctionality(Fonctionality $fonctionality): static
     {
         $this->fonctionality->removeElement($fonctionality);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Picture>
+     */
+    public function getPictures(): Collection
+    {
+        return $this->pictures;
+    }
+
+    public function addPicture(Picture $picture): static
+    {
+        if (!$this->pictures->contains($picture)) {
+            $this->pictures->add($picture);
+            $picture->setListing($this);
+        }
+
+        return $this;
+    }
+
+    public function removePicture(Picture $picture): static
+    {
+        if ($this->pictures->removeElement($picture)) {
+            // set the owning side to null (unless already changed)
+            if ($picture->getListing() === $this) {
+                $picture->setListing(null);
+            }
+        }
 
         return $this;
     }

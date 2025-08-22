@@ -31,6 +31,10 @@ class Picture
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
+    #[ORM\ManyToOne(inversedBy: 'pictures')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Listing $listing = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -92,6 +96,18 @@ class Picture
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getListing(): ?Listing
+    {
+        return $this->listing;
+    }
+
+    public function setListing(?Listing $listing): static
+    {
+        $this->listing = $listing;
 
         return $this;
     }
