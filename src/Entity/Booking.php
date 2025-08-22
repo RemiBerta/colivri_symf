@@ -32,6 +32,9 @@ class Booking
     #[ORM\JoinColumn(nullable: false)]
     private ?Listing $listing = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTime $endingDate = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -93,6 +96,18 @@ class Booking
     public function setListing(?Listing $listing): static
     {
         $this->listing = $listing;
+
+        return $this;
+    }
+
+    public function getEndingDate(): ?\DateTime
+    {
+        return $this->endingDate;
+    }
+
+    public function setEndingDate(?\DateTime $endingDate): static
+    {
+        $this->endingDate = $endingDate;
 
         return $this;
     }

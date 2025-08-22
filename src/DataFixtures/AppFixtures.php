@@ -11,9 +11,6 @@ use Doctrine\Persistence\ObjectManager;
 
 class AppFixtures extends Fixture
 {
-
-
-
     public function load(ObjectManager $manager): void
     {
     $usersData = json_decode(file_get_contents(__DIR__ . '/data/users.json'), true);
@@ -89,9 +86,7 @@ class AppFixtures extends Fixture
                 $randomListing = $listings[array_rand($listings)];
                 $picture->setListing($randomListing);
 
-                $manager->persist($picture);
-
-            
+                $manager->persist($picture);     
         }
     
 

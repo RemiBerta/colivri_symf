@@ -82,6 +82,9 @@ class User
     #[ORM\OneToMany(targetEntity: Listing::class, mappedBy: 'user')]
     private Collection $listings;
 
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $type = null;
+
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
@@ -381,6 +384,18 @@ class User
                 $listing->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(?string $type): static
+    {
+        $this->type = $type;
 
         return $this;
     }
