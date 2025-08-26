@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250825141703 extends AbstractMigration
+final class Version20250826143654 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -21,15 +21,13 @@ final class Version20250825141703 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE booking ADD ending_date DATETIME DEFAULT NULL');
-        $this->addSql('ALTER TABLE user ADD roles JSON NOT NULL, ADD type VARCHAR(50) DEFAULT NULL, CHANGE email email VARCHAR(180) NOT NULL');
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_8D93D649E7927C74 ON user (email)');
+        $this->addSql('ALTER TABLE user ADD type VARCHAR(50) DEFAULT NULL');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE booking DROP ending_date');
-        $this->addSql('DROP INDEX UNIQ_8D93D649E7927C74 ON `user`');
-        $this->addSql('ALTER TABLE `user` DROP roles, DROP type, CHANGE email email VARCHAR(255) NOT NULL');
+        $this->addSql('ALTER TABLE `user` DROP type');
     }
 }

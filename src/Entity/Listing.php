@@ -7,30 +7,40 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ListingRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    normalizationContext: ['groups' => ['listing:read']],
+    denormalizationContext: ['groups' => ['listing:write']]
+)]
 class Listing
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['listing:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['listing:read'])]
     private ?string $title = null;
 
     #[ORM\Column(length: 500)]
+    #[Groups(['listing:read'])]
     private ?string $description = null;
 
     #[ORM\Column]
+    #[Groups(['listing:read'])]
     private ?int $pricePerMonth = null;
 
     #[ORM\Column]
+    #[Groups(['listing:read'])]
     private ?int $maximumCapacity = null;
 
     #[ORM\ManyToOne(inversedBy: 'listings')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['listing:read'])]
     private ?User $user = null;
 
     /**
@@ -43,28 +53,33 @@ class Listing
      * @var Collection<int, Booking>
      */
     #[ORM\OneToMany(targetEntity: Booking::class, mappedBy: 'listing')]
+    #[Groups(['listing:read'])]
     private Collection $bookings;
 
     /**
      * @var Collection<int, Review>
      */
     #[ORM\OneToMany(targetEntity: Review::class, mappedBy: 'listing')]
+    #[Groups(['listing:read'])]
     private Collection $reviews;
 
     #[ORM\OneToOne(inversedBy: 'listing', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['listing:read'])]
     private ?Adress $adress = null;
 
     /**
      * @var Collection<int, Fonctionality>
      */
     #[ORM\ManyToMany(targetEntity: Fonctionality::class, inversedBy: 'listings')]
+    #[Groups(['listing:read'])]
     private Collection $fonctionality;
 
     /**
      * @var Collection<int, Picture>
      */
     #[ORM\OneToMany(targetEntity: Picture::class, mappedBy: 'listing')]
+    #[Groups(['listing:read'])]
     private Collection $pictures;
 
     public function __construct()

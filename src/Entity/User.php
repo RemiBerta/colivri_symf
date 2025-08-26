@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -17,33 +18,42 @@ class User
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['listing:read','user:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['listing:read'])]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['listing:read'])]
     private ?string $lastName = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['listing:read'])]
     private ?string $pseudonym = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups(['listing:read'])]
     private ?\DateTime $birthDate = null;
 
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['listing:read'])]
     private ?string $email = null;
 
     #[ORM\Column(length: 500, nullable: true)]
+    #[Groups(['listing:read'])]
     private ?string $profilPicture = null;
 
     #[ORM\Column(length: 35)]
+    #[Groups(['listing:read'])]
     private ?string $gender = null;
 
     #[ORM\Column]
+    #[Groups(['listing:read'])]
     private ?\DateTime $inscriptionDate = null;
 
     /**
@@ -289,7 +299,6 @@ class User
     public function removeMessage(Message $message): static
     {
         if ($this->messages->removeElement($message)) {
-            // set the owning side to null (unless already changed)
             if ($message->getUser() === $this) {
                 $message->setUser(null);
             }
@@ -319,7 +328,6 @@ class User
     public function removeChatroom(Chatroom $chatroom): static
     {
         if ($this->chatrooms->removeElement($chatroom)) {
-            // set the owning side to null (unless already changed)
             if ($chatroom->getUser() === $this) {
                 $chatroom->setUser(null);
             }
@@ -349,7 +357,6 @@ class User
     public function removeReview(Review $review): static
     {
         if ($this->reviews->removeElement($review)) {
-            // set the owning side to null (unless already changed)
             if ($review->getUser() === $this) {
                 $review->setUser(null);
             }
