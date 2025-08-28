@@ -40,7 +40,6 @@ class Listing
 
     #[ORM\ManyToOne(inversedBy: 'listings')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['listing:read'])]
     private ?User $user = null;
 
     /**
@@ -53,7 +52,6 @@ class Listing
      * @var Collection<int, Booking>
      */
     #[ORM\OneToMany(targetEntity: Booking::class, mappedBy: 'listing')]
-    #[Groups(['listing:read'])]
     private Collection $bookings;
 
     /**
@@ -79,7 +77,6 @@ class Listing
      * @var Collection<int, Picture>
      */
     #[ORM\OneToMany(targetEntity: Picture::class, mappedBy: 'listing')]
-    #[Groups(['listing:read'])]
     private Collection $pictures;
 
     public function __construct()

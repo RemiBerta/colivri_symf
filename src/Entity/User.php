@@ -8,12 +8,14 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
 #[ApiResource]
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -34,26 +36,30 @@ class User
     private ?string $pseudonym = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    #[Groups(['listing:read'])]
+    #[Groups(['user:read'])]
     private ?\DateTime $birthDate = null;
 
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     #[Groups(['listing:read'])]
     private ?string $email = null;
 
     #[ORM\Column(length: 500, nullable: true)]
-    #[Groups(['listing:read'])]
+    #[Groups(['user:read'])]
     private ?string $profilPicture = null;
 
     #[ORM\Column(length: 35)]
-    #[Groups(['listing:read'])]
+    #[Groups(['user:read'])]
     private ?string $gender = null;
 
+    #[ORM\Column(type: 'json')]
+    #[Groups(['user:read'])]
+    private array $roles = [];
+
     #[ORM\Column]
-    #[Groups(['listing:read'])]
+    #[Groups(['user:read'])]
     private ?\DateTime $inscriptionDate = null;
 
     /**
@@ -93,6 +99,7 @@ class User
     private Collection $listings;
 
     #[ORM\Column(length: 50, nullable: true)]
+    #[Groups(['listing:read'])]
     private ?string $type = null;
 
     public function __construct()
@@ -395,15 +402,32 @@ class User
         return $this;
     }
 
-    public function getType(): ?string
+
+
+        public function getUserIdentifier(): string
     {
-        return $this->type;
+        return $this->email;
     }
 
-    public function setType(?string $type): static
+    public function getRoles(): array
     {
-        $this->type = $type;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles;
 
         return $this;
+    }
+
+    public function eraseCredentials(): void
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }

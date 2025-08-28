@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\BookingRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: BookingRepository::class)]
 #[ApiResource]
@@ -16,23 +17,29 @@ class Booking
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Groups(['listing:read'])]
     private ?\DateTime $beginningDate = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['listing:read'])]
     private ?string $status = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['listing:read'])]
     private ?int $finalPrice = null;
 
     #[ORM\ManyToOne(inversedBy: 'bookings')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['listing:read'])]
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'bookings')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['listing:read'])]
     private ?Listing $listing = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['listing:read'])]
     private ?\DateTime $endingDate = null;
 
     public function getId(): ?int

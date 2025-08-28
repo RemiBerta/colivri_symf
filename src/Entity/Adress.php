@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\AdressRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: AdressRepository::class)]
 #[ApiResource]
@@ -16,15 +17,19 @@ class Adress
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['listing:read'])]
     private ?string $street = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['listing:read'])]
     private ?string $city = null;
 
     #[ORM\Column]
+    #[Groups(['listing:read'])]
     private ?int $postalCode = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['listing:read'])]
     private ?string $country = null;
 
     #[ORM\OneToOne(mappedBy: 'adress', cascade: ['persist', 'remove'])]

@@ -8,9 +8,11 @@ use App\Entity\Picture;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
+        public function __construct(private UserPasswordHasherInterface $passwordHasher) {}
     public function load(ObjectManager $manager): void
     {
     $usersData = json_decode(file_get_contents(__DIR__ . '/data/users.json'), true);
@@ -24,10 +26,10 @@ class AppFixtures extends Fixture
                 ->setBirthDate(\DateTime::createFromFormat('d/m/Y', $oneUser["birthDate"]))
                 ->setEmail($oneUser["email"])
                 ->setProfilPicture($oneUser["profilPicture"])
-                ->setPassword($oneUser["password"])
                 ->setGender($oneUser["gender"])
                 ->setInscriptionDate(\DateTime::createFromFormat('d/m/Y',$oneUser["inscriptionDate"]));
-
+            $hashedPassword = $this->passwordHasher->hashPassword($user, '0000');
+            $user->setPassword($hashedPassword);
                 $manager->persist($user);
 
                 $users[] = $user;
