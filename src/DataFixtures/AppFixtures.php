@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Adress;
 use App\Entity\Listing;
 use App\Entity\Picture;
+use App\Entity\Review;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -12,11 +13,13 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
-        public function __construct(private UserPasswordHasherInterface $passwordHasher) {}
+    public function __construct(private UserPasswordHasherInterface $passwordHasher)
+    {
+    }
     public function load(ObjectManager $manager): void
     {
-    $usersData = json_decode(file_get_contents(__DIR__ . '/data/users.json'), true);
-    
+        $usersData = json_decode(file_get_contents(__DIR__ . '/data/users.json'), true);
+
         foreach ($usersData as $oneUser) {
             $user = new User();
             $user
@@ -27,15 +30,15 @@ class AppFixtures extends Fixture
                 ->setEmail($oneUser["email"])
                 ->setProfilPicture($oneUser["profilPicture"])
                 ->setGender($oneUser["gender"])
-                ->setInscriptionDate(\DateTime::createFromFormat('d/m/Y',$oneUser["inscriptionDate"]));
+                ->setInscriptionDate(\DateTime::createFromFormat('d/m/Y', $oneUser["inscriptionDate"]));
             $hashedPassword = $this->passwordHasher->hashPassword($user, '0000');
             $user->setPassword($hashedPassword);
-                $manager->persist($user);
+            $manager->persist($user);
 
-                $users[] = $user;
+            $users[] = $user;
         }
 
-    $adressesData = json_decode(file_get_contents(__DIR__ . '/data/adress.json'), true);
+        $adressesData = json_decode(file_get_contents(__DIR__ . '/data/adress.json'), true);
 
         foreach ($adressesData as $oneAdress) {
             $adress = new Adress();
@@ -45,9 +48,9 @@ class AppFixtures extends Fixture
                 ->setPostalCode($oneAdress["postalCode"])
                 ->setCountry($oneAdress["country"]);
 
-                $manager->persist($adress);
+            $manager->persist($adress);
 
-                $adresses[] = $adress;
+            $adresses[] = $adress;
         }
 
         $listingsData = json_decode(file_get_contents(__DIR__ . '/data/listing.json'), true);
@@ -60,18 +63,18 @@ class AppFixtures extends Fixture
                 ->setDescription($oneListing["description"])
                 ->setTitle($oneListing["title"]);
 
-                $randomUser = $users[array_rand($users)];
-                $listing->setUser($randomUser);
+            $randomUser = $users[array_rand($users)];
+            $listing->setUser($randomUser);
 
-                if (isset($adresses[$index])) {
-                 $listing->setAdress($adresses[$index]);
-                }
+            if (isset($adresses[$index])) {
+                $listing->setAdress($adresses[$index]);
+            }
 
-                $manager->persist($listing);
+            $manager->persist($listing);
 
-                $listings[] = $listing;
+            $listings[] = $listing;
         }
-        
+
         $picturesData = json_decode(file_get_contents(__DIR__ . '/data/picture.json'), true);
 
         foreach ($picturesData as $onePicture) {
@@ -82,15 +85,29 @@ class AppFixtures extends Fixture
                 ->setSortOrder($onePicture["sortOrder"])
                 ->setTitle($onePicture["title"]);
 
-                $randomUser = $users[array_rand($users)];
-                $picture->setUser($randomUser);
+            $randomUser = $users[array_rand($users)];
+            $picture->setUser($randomUser);
 
-                $randomListing = $listings[array_rand($listings)];
-                $picture->setListing($randomListing);
+            $randomListing = $listings[array_rand($listings)];
+            $picture->setListing($randomListing);
 
-                $manager->persist($picture);     
+            $manager->persist($picture);
         }
-    
+
+        $reviewsData = json_decode(file_get_contents(__DIR__ . '/data/review.json'), true);
+
+        foreach ($reviewsData as $oneReview) {
+            $review = new Review();
+            $review
+                ->setTitle($oneReview["title"])
+                ->setContent($oneReview["content"])
+                ->setRaiting($oneReview["raiting"])
+                ->setCreatedAt($oneReview["created_at"])
+                ->setUser($oneReview["user_id"])
+                ->setListing($oneReview["listing_id"]);
+
+            $manager->persist($review);
+        }
 
 
         $manager->flush();

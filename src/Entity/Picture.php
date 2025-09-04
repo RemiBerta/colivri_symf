@@ -14,15 +14,19 @@ class Picture
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['listing:read'])]    
     private ?int $id = null;
 
     #[ORM\Column(length: 600)]
+    #[Groups(['listing:read'])]
     private ?string $url = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['listing:read'])]
     private ?string $description = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['listing:read'])]    
     private ?int $sortOrder = null;
 
     #[ORM\Column(length: 255)]

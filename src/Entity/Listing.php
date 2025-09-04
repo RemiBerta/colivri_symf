@@ -77,6 +77,7 @@ class Listing
      * @var Collection<int, Picture>
      */
     #[ORM\OneToMany(targetEntity: Picture::class, mappedBy: 'listing')]
+    #[Groups(['listing:read'])]
     private Collection $pictures;
 
     public function __construct()

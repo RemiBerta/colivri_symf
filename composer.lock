@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2ac0cb0d6915355beb71d96038fdfe87",
+    "content-hash": "22fe0777a9cb13051293f82b7bf78caa",
     "packages": [
         {
             "name": "api-platform/doctrine-common",

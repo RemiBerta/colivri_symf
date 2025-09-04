@@ -15,18 +15,23 @@ class Review
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['listing:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['listing:read'])]
     private ?string $title = null;
 
     #[ORM\Column(length: 1000, nullable: true)]
+    #[Groups(['listing:read'])]
     private ?string $content = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 2, scale: 0)]
+    #[Groups(['listing:read'])]
     private ?string $raiting = null;
 
     #[ORM\Column]
+    #[Groups(['listing:read'])]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'reviews')]

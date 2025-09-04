@@ -1,0 +1,162 @@
+[
+  {
+    "title": "Je recommande",
+    "content": "J'ai passé une super année dans cet appartement, mes colivers étaient tous géniaux et la ville est très agréable à vivre.",
+    "raiting": "4.5/5",
+    "created_at": "12/12/2024",
+    "user_id": "38",
+    "listing_id": "38"
+  },
+  {
+    "title": "Très bonne expérience",
+    "content": "Ambiance conviviale, logement propre et bien situé. Je reviendrai sans hésiter.",
+    "raiting": "5/5",
+    "created_at": "15/12/2024",
+    "user_id": "38",
+    "listing_id": "31"
+  },
+  {
+    "title": "Super colocation",
+    "content": "Les espaces communs sont bien entretenus et on fait vite des rencontres.",
+    "raiting": "4/5",
+    "created_at": "10/11/2024",
+    "user_id": "39",
+    "listing_id": "32"
+  },
+  {
+    "title": "Bonne surprise",
+    "content": "Quartier calme, appartement moderne, je m'y suis senti chez moi.",
+    "raiting": "4.5/5",
+    "created_at": "18/11/2024",
+    "user_id": "39",
+    "listing_id": "39"
+  },
+  {
+    "title": "Colivers sympas",
+    "content": "On a partagé de bons moments, parfait pour une première expérience en coliving.",
+    "raiting": "4/5",
+    "created_at": "20/10/2024",
+    "user_id": "40",
+    "listing_id": "33"
+  },
+  {
+    "title": "Pratique et agréable",
+    "content": "Proche du centre-ville, tout est accessible à pied. Très pratique.",
+    "raiting": "5/5",
+    "created_at": "02/11/2024",
+    "user_id": "40",
+    "listing_id": "40"
+  },
+  {
+    "title": "Bon rapport qualité prix",
+    "content": "Le loyer est correct pour la qualité du logement et des services inclus.",
+    "raiting": "4/5",
+    "created_at": "08/09/2024",
+    "user_id": "41",
+    "listing_id": "34"
+  },
+  {
+    "title": "Accueil chaleureux",
+    "content": "Les hôtes ont été très disponibles et accueillants, je recommande vivement.",
+    "raiting": "5/5",
+    "created_at": "12/09/2024",
+    "user_id": "41",
+    "listing_id": "31"
+  },
+  {
+    "title": "Bonne ambiance",
+    "content": "On se sent vite intégré, la maison est grande et conviviale.",
+    "raiting": "4.5/5",
+    "created_at": "01/10/2024",
+    "user_id": "42",
+    "listing_id": "35"
+  },
+  {
+    "title": "Expérience enrichissante",
+    "content": "J’ai adoré rencontrer des personnes de différents horizons. Très enrichissant.",
+    "raiting": "5/5",
+    "created_at": "25/11/2024",
+    "user_id": "42",
+    "listing_id": "32"
+  },
+  {
+    "title": "Maison agréable",
+    "content": "Les chambres sont bien décorées et lumineuses. On s’y sent bien.",
+    "raiting": "4/5",
+    "created_at": "03/12/2024",
+    "user_id": "43",
+    "listing_id": "36"
+  },
+  {
+    "title": "Quartier vivant",
+    "content": "Idéal pour les étudiants, proche des transports et des commerces.",
+    "raiting": "4.5/5",
+    "created_at": "08/12/2024",
+    "user_id": "43",
+    "listing_id": "33"
+  },
+  {
+    "title": "Très moderne",
+    "content": "Les équipements sont neufs et la cuisine est super bien équipée.",
+    "raiting": "5/5",
+    "created_at": "14/12/2024",
+    "user_id": "44",
+    "listing_id": "37"
+  },
+  {
+    "title": "Bonne organisation",
+    "content": "Tout est bien géré, du ménage aux factures. Ça simplifie la vie.",
+    "raiting": "4.5/5",
+    "created_at": "17/12/2024",
+    "user_id": "44",
+    "listing_id": "34"
+  },
+  {
+    "title": "Expérience sympa",
+    "content": "Ambiance cool, maison spacieuse, et chacun respecte l’intimité des autres.",
+    "raiting": "4/5",
+    "created_at": "05/09/2024",
+    "user_id": "45",
+    "listing_id": "38"
+  },
+  {
+    "title": "Très bien situé",
+    "content": "Le logement est proche des universités et du centre. Parfait pour moi.",
+    "raiting": "5/5",
+    "created_at": "09/09/2024",
+    "user_id": "45",
+    "listing_id": "35"
+  },
+  {
+    "title": "Colocation idéale",
+    "content": "J’ai adoré vivre ici, les colivers étaient respectueux et la maison agréable.",
+    "raiting": "4.5/5",
+    "created_at": "22/10/2024",
+    "user_id": "46",
+    "listing_id": "36"
+  },
+  {
+    "title": "Très satisfaisant",
+    "content": "Une belle expérience, je conseille à tous ceux qui veulent tester le coliving.",
+    "raiting": "5/5",
+    "created_at": "28/10/2024",
+    "user_id": "46",
+    "listing_id": "37"
+  },
+  {
+    "title": "Belle maison",
+    "content": "J’ai particulièrement aimé la terrasse et le jardin, parfait pour l’été.",
+    "raiting": "4.5/5",
+    "created_at": "07/11/2024",
+    "user_id": "47",
+    "listing_id": "39"
+  },
+  {
+    "title": "Convivialité au rendez-vous",
+    "content": "Colocation très vivante, soirées organisées régulièrement, super ambiance.",
+    "raiting": "5/5",
+    "created_at": "11/11/2024",
+    "user_id": "47",
+    "listing_id": "40"
+  }
+]
